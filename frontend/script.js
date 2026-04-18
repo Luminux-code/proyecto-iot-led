@@ -1,4 +1,4 @@
-const URL = "http://localhost:3000/led";
+const URL = "https://proyecto-iot-led.onrender.com/led";
 
 // Encender LED
 function encender() {
