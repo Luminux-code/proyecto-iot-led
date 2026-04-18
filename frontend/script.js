@@ -6,7 +6,6 @@ function encender() {
         method: "POST"
     });
 
-    document.getElementById("circulo").style.background = "green";
 }
 
 // Apagar LED
@@ -15,7 +14,7 @@ function apagar() {
         method: "POST"
     });
 
-    document.getElementById("circulo").style.background = "red";
+    
 }
 
 // (Opcional) actualizar estado desde backend
