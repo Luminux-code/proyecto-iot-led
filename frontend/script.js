@@ -1,4 +1,4 @@
-const URL = "https://proyecto-iot-led.onrender.com/led";
+const API_URL = "https://proyecto-iot-led.onrender.com/led";
 
 const led = document.getElementById("circulo");
 const estadoTexto = document.getElementById("estado");
@@ -18,13 +18,13 @@ function actualizarUI(estado) {
 
 // Encender
 async function encender() {
-    await fetch(`${URL}/encender`, { method: "POST" });
+    await fetch(`${API_URL}/encender`, { method: "POST" });
     actualizarEstado();
 }
 
 // Apagar
 async function apagar() {
-    await fetch(`${URL}/apagar`, { method: "POST" });
+    await fetch(`${API_URL}/apagar`, { method: "POST" });
     actualizarEstado();
 }
 
@@ -32,7 +32,7 @@ async function apagar() {
 async function actualizarEstado() {
     try {
         estadoTexto.innerText = "Actualizando...";
-        const res = await fetch(`${URL}/estado`);
+        const res = await fetch(`${API_URL}/estado`);
         const data = await res.json();
 
         actualizarUI(data.estado);
