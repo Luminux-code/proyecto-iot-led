@@ -1,30 +1,48 @@
 const URL = "https://proyecto-iot-led.onrender.com/led";
 
-// Encender LED
-function encender() {
-    fetch(`${URL}/encender`, {
-        method: "POST"
-    });
+const led = document.getElementById("circulo");
+const estadoTexto = document.getElementById("estado");
 
+// UI
+function actualizarUI(estado) {
+    if (estado === "on") {
+        led.classList.remove("apagado");
+        led.classList.add("encendido");
+        estadoTexto.innerText = "Estado: Encendido";
+    } else {
+        led.classList.remove("encendido");
+        led.classList.add("apagado");
+        estadoTexto.innerText = "Estado: Apagado";
+    }
 }
 
-// Apagar LED
-function apagar() {
-    fetch(`${URL}/apagar`, {
-        method: "POST"
-    });
-
-    
+// Encender
+async function encender() {
+    await fetch(`${URL}/encender`, { method: "POST" });
+    actualizarEstado();
 }
 
-// (Opcional) actualizar estado desde backend
+// Apagar
+async function apagar() {
+    await fetch(`${URL}/apagar`, { method: "POST" });
+    actualizarEstado();
+}
+
+// Obtener estado
 async function actualizarEstado() {
-    const res = await fetch(`${URL}/estado`);
-    const data = await res.json();
+    try {
+        estadoTexto.innerText = "Actualizando...";
+        const res = await fetch(`${URL}/estado`);
+        const data = await res.json();
 
-    document.getElementById("circulo").style.background =
-        data.estado === "on" ? "green" : "red";
+        actualizarUI(data.estado);
+    } catch (error) {
+        estadoTexto.innerText = "⚠️ Sin conexión";
+    }
 }
 
-// refrescar cada 1s
-setInterval(actualizarEstado, 1000);
+// Auto refresh
+setInterval(actualizarEstado, 2000);
+
+// Inicial
+window.onload = actualizarEstado;

@@ -1,21 +1,86 @@
 body {
-    text-align: center;
-    font-family: Arial;
-    margin-top: 50px;
+    margin: 0;
+    height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-family: 'Segoe UI', sans-serif;
+    color: white;
+
+    background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
 }
 
-#circulo {
-    width: 120px;
-    height: 120px;
+.container {
+    text-align: center;
+    padding: 40px;
+
+    background: rgba(255,255,255,0.05);
+    backdrop-filter: blur(15px);
+
+    border-radius: 20px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.6);
+}
+
+h1 {
+    margin-bottom: 20px;
+}
+
+/* LED */
+.led {
+    width: 140px;
+    height: 140px;
     border-radius: 50%;
-    background-color: red;
     margin: 20px auto;
-    transition: 0.3s;
+    transition: 0.4s;
+}
+
+.encendido {
+    background: radial-gradient(circle, #00ff88, #00994d);
+    box-shadow:
+        0 0 30px #00ff88,
+        0 0 60px #00ff88,
+        0 0 100px #00ff88;
+}
+
+.apagado {
+    background: radial-gradient(circle, #ff3b3b, #800000);
+    box-shadow: 0 0 20px #ff3b3b;
+}
+
+#estado {
+    margin: 15px;
+    font-size: 18px;
+}
+
+/* BOTONES */
+.botones {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
 }
 
 button {
-    padding: 10px 20px;
-    margin: 10px;
+    border: none;
+    padding: 12px 25px;
     font-size: 16px;
+    border-radius: 12px;
     cursor: pointer;
+    transition: 0.3s;
+}
+
+button.on {
+    background: #00c853;
+    color: white;
+}
+
+button.off {
+    background: #d50000;
+    color: white;
+}
+
+button:hover {
+    transform: scale(1.1);
+    opacity: 0.9;
 }
